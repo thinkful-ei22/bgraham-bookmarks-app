@@ -2,6 +2,9 @@ Bookmarks App
 Designed By Brandon Graham
 
 
+![imgur] (https://i.imgur.com/NyO1KZx.png)
+
+
 USER STORIES: 
 
 As a user:
@@ -31,7 +34,6 @@ Check all validations in the API documentation (e.g. title and url field require
 * (Extension) I can edit the rating and description of a bookmark in my list
 
 
-![Bookmark App Wireframe] (https://i.imgur.com/NyO1KZx.png)
 
 
 Version History:
