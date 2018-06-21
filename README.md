@@ -1,10 +1,6 @@
 Bookmarks App
 Designed By Brandon Graham
 
-
-![BookmarkAppWireframe](http://i.imgur.com/NyO1KZx.png)
-
-
 USER STORIES: 
 
 As a user:
@@ -35,7 +31,9 @@ Check all validations in the API documentation (e.g. title and url field require
 
 
 
+Wireframe: 
+![BookmarkAppWireframe](http://i.imgur.com/NyO1KZx.png)
 
 Version History:
 
-Ver. 0: Created framework for Bookmark App (06-21-18)
+Ver. 0: Created framework & wireframe for Bookmark App (06-21-18)
