@@ -6,16 +6,16 @@ USER STORIES:
 
 As a user:
 
+* I can see a list of my bookmarks when I first open the app
+
+* All bookmarks in the list default to a "condensed" view showing only title and rating\
+
 * I can add bookmarks to my bookmark list. Bookmarks contain:
 
 title
 url link
 description
 rating (1-5)
-
-* I can see a list of my bookmarks when I first open the app
-
-* All bookmarks in the list default to a "condensed" view showing only title and rating
 
 * I can click on a bookmark to display the "detailed" view
 
@@ -31,7 +31,7 @@ Check all validations in the API documentation (e.g. title and url field require
 * (Extension) I can edit the rating and description of a bookmark in my list
 
 
-![Bookmark App Wireframe] (https://raw.githubusercontent.com/thinkful-ei22/bgraham-bookmarks-app/gh-pages/BookmarksAppWireframe.png)
+![Bookmark App Wireframe] (BookmarksAppWireframe.png)
 
 
 Version History:
