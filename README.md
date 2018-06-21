@@ -31,7 +31,7 @@ Check all validations in the API documentation (e.g. title and url field require
 * (Extension) I can edit the rating and description of a bookmark in my list
 
 
-![Bookmark App Wireframe] (BookmarksAppWireframe.png)
+![Bookmark App Wireframe] (images/BookmarksAppWireframe.png)
 
 
 Version History:
