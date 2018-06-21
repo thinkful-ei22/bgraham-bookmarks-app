@@ -2,7 +2,7 @@ Bookmarks App
 Designed By Brandon Graham
 
 
-![imgur] (https://i.imgur.com/NyO1KZx.png)
+![Imgur] (http://i.imgur.com/NyO1KZx.png)
 
 
 USER STORIES: 
