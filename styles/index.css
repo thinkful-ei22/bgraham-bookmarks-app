@@ -1,0 +1,10 @@
+#add-bookmark-form {
+    display: none;
+}
+.expandedContainer{
+    display: none;
+}
+
+.expanded .expandedContainer {
+    display: block;
+}

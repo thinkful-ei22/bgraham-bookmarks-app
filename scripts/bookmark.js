@@ -1,11 +1,13 @@
 'use strict';
-/* global $, store, bookmark */
+/* global $, bookmark */
 
 const bookmarkList = (function () {
+  
 
   function generateBookmarkElement(bookmark){
-    let itemTitle = `<span class="bookmark-item bookmark-item_expanded">${bookmark.name}</span>`;
+    let itemTitle = `<span class="bookmark-item">${bookmark.name}</span>`;
     let itemRating = `<span class="bookmark-rating">${bookmark.rating}</span>`;
+    let expanded = bookmark.expanded ? 'expanded' : ' ';
     let itemExpandedBox = `
     <div class="expandedContainer">
     <p class="bookmark-item-description">${bookmark.description}</p>
@@ -18,15 +20,10 @@ const bookmarkList = (function () {
     </div>
     `;
     return `
-    <li class="js-item-element" data-item-id="${bookmark.id}">
-      ${itemTitle}
-      <div class="bookmark-item-controls">
-        <button class="bookmark-item-expand js-item-expand">
-          <span class="button-label">Expand</span>
-        </button>
+    <li class="js-item-element ${expanded}" data-item-id="${bookmark.id}"> 
+        ${itemTitle}
         ${itemExpandedBox}
         ${itemRating}
-      </div>
     </li>`;
  
   }
@@ -36,17 +33,27 @@ const bookmarkList = (function () {
     return items.join('');
   }
 
-  function render() {
+  function render(initial) {
     // Filter item list if store prop is true by item.checked === false
     let bookmarks = bookmark.bookmarks;
-   
+    
+
+    if (bookmark.filteredRating === true) {
+      const bookmarkListItemsString = generateBookmarkString(bookmark.filteredList);
+      $('.js-bookmarks').html(bookmarkListItemsString);
+      console.log('filter ran');
+    } 
+    else {
+      const bookmarkListItemsString = generateBookmarkString(bookmarks);
+      $('.js-bookmarks').html(bookmarkListItemsString);
+      console.log('full list ran');
+
+    }
    
     // render the shopping list in the DOM
-    console.log('`render` ran');
-    const bookmarkListItemsString = generateBookmarkString(bookmarks);
+    //console.log('`render` ran');
   
     // // insert that HTML into the DOM
-    $('.js-bookmarks').html(bookmarkListItemsString);
   }
   
   

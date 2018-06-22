@@ -20,7 +20,7 @@ const item = (function(){
   };
   
   const validateRating = function (rating){
-    if ((typeof rating !== 'number')|| (rating > 5) || (rating <0)){
+    if ((rating > 5) || (rating < 0)){
       return false;
     }
     else {

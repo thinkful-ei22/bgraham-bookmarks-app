@@ -4,8 +4,9 @@
 // eslint-disable-next-line no-unused-vars
 
 $(document).ready(function() {
-  bookmark.bindListeners();
   bookmarkList.render();
+  bookmark.bindListeners();
+
   console.log('document ready');
 
 });
