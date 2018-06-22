@@ -135,17 +135,16 @@ const bookmark =  (function(){
   
   function removeBookmark(selectedId){
     console.log(selectedId);
-    let filteredArray = bookmarks.filter(function (item) {
-      return item.id !== selectedId;
+    
+    bookmarks.forEach(function (bookmark){
+      if (bookmark.id === selectedId){
+        delete bookmarks.bookmark;
+      }
+
     });
 
-    console.log(filteredArray);
-    bookmarks = filteredArray;
-    console.log(bookmarks);
-    
     bookmarkList.render();
-    bookmark.bindListeners();
-
+    bindListeners();
   }
 
   function filterByRating(rating){
