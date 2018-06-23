@@ -8,25 +8,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/index.css" />
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="scripts/item.js"></script>
-<script type="text/javascript" src="scripts/bookmark.js"></script>
-<script type="text/javascript" src="scripts/store.js"></script>
- <script type="text/javascript" src="scripts/index.js"></script>
+   
 </head>
 
 <body>
-   <main-app>
     <div class="container">
         <h1>My Bookmarks</h1>
         <button name="add-bookmark" class="add-bookmark">Add Bookmark</button>
         <form id="add-bookmark-form">
             <label for="new-bookmark-entry">Create a new bookmark:</label>
+
+            <label for="new-bookmark-entry-name">Name:</label>
             <input type="text" name="new-bookmark-entry-name" class="js-new-bookmark-name" placeholder="Name">
+
+            <label for="new-bookmark-entry-url">URL:</label>
             <input type="text" name="new-bookmark-entry-url" class="js-new-bookmark-url" placeholder="URL">
+
+            <label for="new-bookmark-entry-description">Description:</label>
             <input type="text" name="new-bookmark-entry-description" class="js-new-bookmark-description resizable" placeholder="Description goes here...">
-           
+
+            <label for ="star-rating"> Rating: </label>
             <input type="radio" id="star-rating" name="rating" value="1" />
             <label for="1-star">1 star</label>
 
@@ -50,14 +51,20 @@
         <option value="3">3 stars</option>
         <option value="2">2 stars</option>
         <option value="1">1 star</option>
-        <option value="none" selected>--Minimun Rating--</option>    
+        <option value="0" selected>--Minimun Rating--</option>    
     </select>
     <button class="filterRating">Filter</button>
 
         <ul class="bookmarks js-bookmarks"> </ul>
             </div>
-   </main-app>
    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script type="text/javascript" src="scripts/item.js"></script>
+   <script type="text/javascript" src="scripts/bookmark.js"></script>
+   <script type="text/javascript" src="scripts/store.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
 </body>
 
 </html>

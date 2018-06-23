@@ -1,11 +1,11 @@
 'use strict';
-/* global $ , bookmarkList, bookmark  */
+/* global $ , bookmarkList, store  */
 
 // eslint-disable-next-line no-unused-vars
 
 $(document).ready(function() {
-  bookmarkList.render();
-  bookmark.bindListeners();
+  bookmarkList.render(store.bookmarks);
+  store.bindListeners();
 
   console.log('document ready');
 

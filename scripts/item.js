@@ -20,6 +20,13 @@ const item = (function(){
   };
   
   const validateRating = function (rating){
+    
+    // const rating = parseInt(ratingString);
+    // console.log(typeof rating);
+
+    if (typeof rating === 'undefined'){
+      return false;
+    }
     if ((rating > 5) || (rating < 0)){
       return false;
     }
