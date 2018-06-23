@@ -8,3 +8,39 @@
 .expanded .expandedContainer {
     display: block;
 }
+ul {
+    list-style-type: none;
+    position: relative;
+    left: 415px;
+  }
+  h1{
+      text-align: center;
+  }
+.bookmark-element {
+    position: static;
+    width: 360px;
+    border: 4px black solid;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    padding-left: 10px;
+}
+.button-container{
+    position: relative;
+    left: 470px;
+}
+#add-bookmark-form{
+    position: relative;
+    right: 200px;
+    width: 650px;
+    border: 4px black solid;
+}
+
+.js-new-bookmark-description{
+    resize: both;
+    overflow: auto;
+}
+
+#bookmark-url, .remove-bookmark{
+    position: relative;
+left: 60px;
+}

@@ -3,16 +3,8 @@
 
 // eslint-disable-next-line no-unused-vars
 
+//DOM ready - renders the bookmarks and adds listeners to the correct bookmark elements
 $(document).ready(function() {
   bookmarkList.render(store.bookmarks);
   store.bindListeners();
-
-  console.log('document ready');
-
 });
-
-// console.log(store);
-// console.log(foo);
-
-// console.log(Item);
-// console.log(foo);

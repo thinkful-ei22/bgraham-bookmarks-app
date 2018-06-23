@@ -1,13 +1,13 @@
 'use strict';
 /* global $ */
 
+//bookmarkList IIFE, creates the dynamic html for the bookmark app and renders it
 const bookmarkList = (function () {
   
-
+//generateBookmarkElement - generates the html for each bookmark
   function generateBookmarkElement(bookmark){
-    console.log(bookmark.url);
     let itemTitle = `<span class="bookmark-item">${bookmark.name}</span>`;
-    let itemRating = `<span class="bookmark-rating">${bookmark.rating}</span>`;
+    let itemRating = '';
     let expanded = bookmark.expanded ? 'expanded' : ' ';
     let itemExpandedBox = `
     <div class="expandedContainer">
@@ -18,40 +18,54 @@ const bookmarkList = (function () {
     </button>
     </div>
     `;
+    const bookmarkRating = parseInt(bookmark.rating);
 
 
-       
-    
-      
+    if (bookmarkRating ===1){
+      itemRating = `<span class="bookmark-rating">
+      <span>&#9733</span><span>&#9734</span><span>&#9734</span><span>&#9734</span><span>&#9734</span>
+      </span>`;
+    }
+    else if (bookmarkRating ===2){
+      itemRating = `<span class="bookmark-rating">
+      <span>&#9733</span><span>&#9733</span><span>&#9734</span><span>&#9734</span><span>&#9734</span>
+      </span>`;
+    }
+    else if (bookmarkRating ===3){
+      itemRating = `<span class="bookmark-rating">
+      <span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9734</span><span>&#9734</span>
+      </span>`;
+    }
+    else if (bookmarkRating ===4){
+      itemRating = `<span class="bookmark-rating">
+      <span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9734</span>
+      </span>`;
+    }
+    else if (bookmarkRating ===5){
+      itemRating = `<span class="bookmark-rating">
+      <span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9733</span>
+      </span>`;
+    }
+
     return `
-    <li class="js-item-element ${expanded}" data-item-id="${bookmark.id}"> 
+    <li class="bookmark-element js-item-element ${expanded}" data-item-id="${bookmark.id}"> 
         ${itemTitle}
-        ${itemExpandedBox}
         ${itemRating}
+        ${itemExpandedBox}
     </li>`;
  
   }
 
+  //generateBookmarkString - takes the HTML of each bookmark element and creates a long string 
   function generateBookmarkString(bookmarkList) {
     const items = bookmarkList.map((item) => generateBookmarkElement(item));
     return items.join('');
   }
 
+  //render -  makes the bookmarks and all the buttons on the page visible
   function render(list) {
-    // Filter item list if store prop is true by item.checked === false    
     const bookmarkListItemsString = generateBookmarkString(list);
     $('.js-bookmarks').html(bookmarkListItemsString);
-    console.log('full list ran');
-
-    
-   
-    // render the shopping list in the DOM
-    //console.log('`render` ran');
-  
-    // // insert that HTML into the DOM
   }
-  
-  
-
   return {render};
 })();

@@ -7,41 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/index.css" />
-
-   
 </head>
-
 <body>
     <div class="container">
         <h1>My Bookmarks</h1>
+
+        <div class="button-container">
         <button name="add-bookmark" class="add-bookmark">Add Bookmark</button>
         <form id="add-bookmark-form">
-            <label for="new-bookmark-entry">Create a new bookmark:</label>
+            <label for="new-bookmark-entry">Create a new bookmark: <br><br></label>
 
             <label for="new-bookmark-entry-name">Name:</label>
             <input type="text" name="new-bookmark-entry-name" class="js-new-bookmark-name" placeholder="Name">
 
-            <label for="new-bookmark-entry-url">URL:</label>
+            <label for="new-bookmark-entry-url"><br>URL:</label>
             <input type="text" name="new-bookmark-entry-url" class="js-new-bookmark-url" placeholder="URL">
 
-            <label for="new-bookmark-entry-description">Description:</label>
-            <input type="text" name="new-bookmark-entry-description" class="js-new-bookmark-description resizable" placeholder="Description goes here...">
+            <label for="new-bookmark-entry-description"><br>Description:</label>
+            <input type="text" name="new-bookmark-entry-description" class="js-new-bookmark-description" placeholder="Description goes here...">
 
-            <label for ="star-rating"> Rating: </label>
+            <label for ="star-rating"><br> Rating: </label>
             <input type="radio" id="star-rating" name="rating" value="1" />
-            <label for="1-star">1 star</label>
+            <label for="1-star">★☆☆☆☆</label>
 
             <input type="radio" id="star-rating" name="rating" value="2"  />
-            <label for="2-stars">2 stars</label>
+            <label for="2-stars">★★☆☆☆</label>
 
             <input type="radio" id="star-rating" name="rating" value="3"  />
-            <label for="3-stars">3 stars</label>
+            <label for="3-stars">★★★☆☆</label>
 
             <input type="radio" id="star-rating" name="rating" value="4" />
-            <label for="4-stars">4 stars</label>
+            <label for="4-stars">★★★★☆</label>
 
             <input type="radio" id="star-rating" name="rating" value="5" />
-            <label for="5-stars">5 stars</label>
+            <label for="5-stars">★★★★★</label>
             
             <button type="submit">Submit</button>
         </form>
@@ -54,7 +53,7 @@
         <option value="0" selected>--Minimun Rating--</option>    
     </select>
     <button class="filterRating">Filter</button>
-
+</div>
         <ul class="bookmarks js-bookmarks"> </ul>
             </div>
    
