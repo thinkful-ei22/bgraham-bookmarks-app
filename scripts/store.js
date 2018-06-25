@@ -1,5 +1,5 @@
 'use strict';
-/* global $, cuid, item bookmarkList*/
+/* global $, cuid, item bookmarkList, api*/
 
 
 const store =  (function(){
@@ -16,9 +16,9 @@ const store =  (function(){
   
   //handleAddBookmarkButton - takes the add button event and makes the add bookmark box visible, while making itself hidden
   function handleAddBookmarkButton(){
-    $('.add-bookmark').on('click', function (){
+    $('#add-bookmark-button').on('click', function (){
       $('#add-bookmark-form').show();
-      $('.add-bookmark').hide();
+      $('#add-bookmark-button').hide();
     });
   }
   /*
@@ -32,13 +32,16 @@ const store =  (function(){
       let newBookmarkName = $('.js-new-bookmark-name').val();
       let newBookmarkURL = $('.js-new-bookmark-url').val();
       let newBookmarkDescription = $('.js-new-bookmark-description').val();
-      let newBookarkRating = $('#star-rating:checked').val();
+      let newBookmarkRating = $('#star-rating:checked').val();
      
       $('.js-new-bookmark-name').val('');
       $('.js-new-bookmark-url').val('');
       $('.js-new-bookmark-description').val('');
 
-      addBookmark(newBookmarkName, newBookmarkURL, newBookmarkDescription, newBookarkRating);
+      if (newBookmarkRating ===5){
+        event.$('.bookmark-element').css('border', '4px gold');
+      }
+      addBookmark(newBookmarkName, newBookmarkURL, newBookmarkDescription, newBookmarkRating);
  
       $('.add-bookmark').show();
       $('#add-bookmark-form').hide();
@@ -54,7 +57,7 @@ const store =  (function(){
   //handleExpand - takes the event of the user clicking on the bookmark & runs expandBookmark & filterByRating
 
   function handleExpand(){
-    $('.bookmark-item').on ('click', function (e){
+    $('.expand-bookmark').on ('click', function (e){
       const id = getItemIdFromElement(e.currentTarget);
 
       setExpandedFor(id);
@@ -110,7 +113,18 @@ const store =  (function(){
       alert('Must enter a valid rating (1-5).');
       throw new TypeError('Must enter a valid rating (1-5).');
     }
-    bookmarks.push({id: cuid(), name: name, url: url, description: description, rating: rating, expanded: false});
+
+    let newestBookmarkObj ={
+      id: cuid(),
+      name,
+      url,
+      description,
+      rating,
+      expanded: false
+    };
+
+    api.createBookmark(newestBookmarkObj);
+    bookmarks.push(newestBookmarkObj);
 
   }
 
