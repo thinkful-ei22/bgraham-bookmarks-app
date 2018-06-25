@@ -1,5 +1,5 @@
 'use strict';
-/* global $, cuid, item bookmarkList, api*/
+/* global $, cuid, item bookmarkList,  api*/
 
 
 const store =  (function(){
@@ -38,9 +38,9 @@ const store =  (function(){
       $('.js-new-bookmark-url').val('');
       $('.js-new-bookmark-description').val('');
 
-      if (newBookmarkRating ===5){
-        event.$('.bookmark-element').css('border', '4px gold');
-      }
+      // if (newBookmarkRating ===5){
+      //   event.$('.bookmark-element').css('border', '4px gold');
+      // }
       addBookmark(newBookmarkName, newBookmarkURL, newBookmarkDescription, newBookmarkRating);
  
       $('.add-bookmark').show();
@@ -48,8 +48,6 @@ const store =  (function(){
       alreadyAdded = true;
       filterByRating(filteredRating);
 
-      bookmarkList.render(bookmarks);
-      bindListeners();
     });
   }
 
@@ -57,9 +55,8 @@ const store =  (function(){
   //handleExpand - takes the event of the user clicking on the bookmark & runs expandBookmark & filterByRating
 
   function handleExpand(){
-    $('.expand-bookmark').on ('click', function (e){
+    $('.bookmarks-list').on ('click', '.expand-bookmark', function (e){
       const id = getItemIdFromElement(e.currentTarget);
-
       setExpandedFor(id);
       filterByRating(filteredRating);
     
@@ -81,12 +78,14 @@ const store =  (function(){
   //handleRemoveBookmark - takes the event of the remove bookmark button, runs removeBookmark & filterByRating 
 
   function handleRemoveBookmark() {
-    $('.remove-bookmark').click( event => {
+    $('.bookmarks-list').on('click', '.remove-bookmark',(function(event) {
+      console.log('remove handler running');
+
       const id = getItemIdFromElement(event.currentTarget);
       removeBookmark(id);
       filterByRating(filteredRating);
 
-    });
+    }));
   }
 
   /* Handle data storage for event handlers*/
@@ -115,17 +114,21 @@ const store =  (function(){
     }
 
     let newestBookmarkObj ={
-      id: cuid(),
-      name,
+      title: name,
       url,
-      description,
-      rating,
-      expanded: false
+      desc: description,
+      rating: Number(rating),
     };
+    console.log(newestBookmarkObj);
+    api.createBookmark(newestBookmarkObj, function() {
+      bookmarkList.render();
+    });
 
-    api.createBookmark(newestBookmarkObj);
-    bookmarks.push(newestBookmarkObj);
+  }
 
+  function addSingleBookmark(bookmark){
+    bookmark.expanded = false;
+    bookmarks.push(bookmark);
   }
 
   //getItemIdFromElement - finds the id of the closest bookmark to an item (event target)
@@ -144,11 +147,9 @@ const store =  (function(){
     const selectedBookmark = bookmarks.find (function(bookmark){
       if (bookmark.id ===selectedId){
         bookmark.expanded = !bookmark.expanded;
-        return true;
       }
     });
     bookmarkList.render(bookmarks);
-    bindListeners();
 
   }
   
@@ -156,14 +157,18 @@ const store =  (function(){
   function removeBookmark(selectedId){
     const list = [];
     for (let i=0; i <bookmarks.length; i++){
-      if (bookmarks[i].id !== selectedId){
-        list.push(bookmarks[i]);
+      if (bookmarks[i].id === selectedId){
+        api.deleteBookmark(bookmarks[i], function() {
+          bookmarks[i].remove();
+          bookmarkList.render();
+        });
       }
     }
     bookmarks = list;
- 
-    bookmarkList.render(bookmarks);
-    bindListeners();
+    console.log(bookmarks);
+
+    bookmarkList.render();
+  
   }
 
   /*
@@ -174,7 +179,6 @@ const store =  (function(){
     filteredRating = rating;
     filteredList = bookmarks.filter(item => item.rating >= filteredRating);
     bookmarkList.render(filteredList);
-    bindListeners();
   }
 
   /* Bind listenrs*/
@@ -189,5 +193,5 @@ const store =  (function(){
     handleRemoveBookmark();
   }
 
-  return { bookmarks:bookmarks, filter: filteredList, removeBookmark, filterByRating, bindListeners };
+  return { bookmarks:bookmarks, filter: filteredList, addSingleBookmark, removeBookmark, filterByRating, bindListeners };
 })();

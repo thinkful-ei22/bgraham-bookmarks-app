@@ -1,20 +1,20 @@
 'use strict';
-/* global $ */
+/* global $ store */
 
 //bookmarkList IIFE, creates the dynamic html for the bookmark app and renders it
 const bookmarkList = (function () {
   
 //generateBookmarkElement - generates the html for each bookmark
   function generateBookmarkElement(bookmark){
-    let itemTitle = `<span class="bookmark-item">${bookmark.name}</span>`;
+    let itemTitle = `<span class="bookmark-item">${bookmark.title}</span>`;
     let expandButton = '<button class="expand-bookmark"> <span class="button-label" role="expand-bookmark">Expand/Collapse</span> </button>';
     let itemRating = '';
     let expanded = bookmark.expanded ? 'expanded' : ' ';
     let itemExpandedBox = `
     <div class="expandedContainer">
-    <p class="bookmark-item-description"><i>- ${bookmark.description}</i></p>
+    <p class="bookmark-item-description"><i>- ${bookmark.desc}</i></p>
   <div class="expanded-footer">
-    <a href="https://${bookmark.url}" id="bookmark-url">Visit Site</a>
+    <a href="${bookmark.url}" id="bookmark-url">Visit Site</a>
     <button class="remove-bookmark">
     <span class="button-label" role="remove-bookmark">Remove Bookmark</span>
     </button>
@@ -69,8 +69,8 @@ const bookmarkList = (function () {
   }
 
   //render -  makes the bookmarks and all the buttons on the page visible
-  function render(list) {
-    const bookmarkListItemsString = generateBookmarkString(list);
+  function render() {
+    const bookmarkListItemsString = generateBookmarkString(store.bookmarks);
     $('.js-bookmarks').html(bookmarkListItemsString);
   }
   return {render};
