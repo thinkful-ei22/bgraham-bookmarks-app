@@ -8,14 +8,16 @@ const api = (function(){
   };
 
   const createBookmark= function(bookmarkObj, callback){
-    const newBookmark = bookmarkObj;
     $.ajax({
       url: `${BASE_URL}/bookmarks`,
       method: 'POST',
       contentType: 'application/json',
-      //dataType: 'application/json',
-      data: JSON.stringify(newBookmark),
-      success: callback
+      dataType: 'json',
+      data: JSON.stringify(bookmarkObj),
+      success: callback,
+      error: function (err) {
+        console.log(err);
+      }
     });
   };
 
@@ -28,25 +30,26 @@ const api = (function(){
       method: 'PATCH',
       contentType: 'application/json',
       
-      //dataType: 'json',
+      dataType: 'json',
       data: JSON.stringify(updateData),
       success: callback
     });
   };
 
-  // const deleteBookmark = function (selectedBookmark, callback){
-  //   let itemURL = `${BASE_URL}/bookmarks/${store.bookmarks.id}`;
+  const deleteBookmark = function (selectedBookmark, callback){
+    let itemURL = `${BASE_URL}/bookmarks/${selectedBookmark.id}`;
     
-  //   $.ajax({
-  //     url: itemURL,
-  //     method:
-  //     contentType: 'application/json',
-  //     data: JSON.delete (selectedBookmark),
-  //     success: callback,
-  //   });
-  // };
+    $.ajax({
+      url: itemURL,
+      method: 'DELETE',
+      contentType: 'application/json',
+      dataType:'json',
+      data: JSON.stringify(selectedBookmark),
+      success: callback,
+    });
+  };
   return {
-    getBookmarks, createBookmark, updateBookmark, 
+    getBookmarks, createBookmark, updateBookmark, deleteBookmark
   };
 
 }());

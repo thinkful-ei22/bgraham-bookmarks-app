@@ -9,9 +9,11 @@ $(document).ready(function() {
     // store.bookmarks = bookmarks;
     bookmarks.forEach(element => {
       store.addSingleBookmark(element);
+    
     });
     console.log('loaded!');
     bookmarkList.render(store.bookmarks);
+    store.bindListeners();
+
   });
-  store.bindListeners();
 });

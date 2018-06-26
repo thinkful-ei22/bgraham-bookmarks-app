@@ -4,11 +4,20 @@
     right: 2%;
     border: 4px black solid;
     margin-bottom: 10px;
+    display: none;
 }
 .expandedContainer{
     display: none;
 }
 
+.new-bookmark-name, .new-bookmark-url, .new-bookmark-description{
+    margin-bottom: 10px;
+}
+
+#url-alert{
+    color: red;
+    font-size: 12px;
+}
 .expanded .expandedContainer {
     display: block;
 }

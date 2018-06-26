@@ -38,12 +38,10 @@ const store =  (function(){
       $('.js-new-bookmark-url').val('');
       $('.js-new-bookmark-description').val('');
 
-      // if (newBookmarkRating ===5){
-      //   event.$('.bookmark-element').css('border', '4px gold');
-      // }
+     
       addBookmark(newBookmarkName, newBookmarkURL, newBookmarkDescription, newBookmarkRating);
  
-      $('.add-bookmark').show();
+      $('#add-bookmark-button').show();
       $('#add-bookmark-form').hide();
       alreadyAdded = true;
       filterByRating(filteredRating);
@@ -55,7 +53,9 @@ const store =  (function(){
   //handleExpand - takes the event of the user clicking on the bookmark & runs expandBookmark & filterByRating
 
   function handleExpand(){
+    console.log('handleexpand');
     $('.bookmarks-list').on ('click', '.expand-bookmark', function (e){
+     
       const id = getItemIdFromElement(e.currentTarget);
       setExpandedFor(id);
       filterByRating(filteredRating);
@@ -66,8 +66,8 @@ const store =  (function(){
 
   function handleRatingFilter(){
 
-    $('.filterRating').click(function (){
-      
+    $('#add-filter-buttons').on('click', '.filter-rating-button', function(){
+      console.log('filter running');
       filteredRating = parseInt($('.star-rating').val());
 
       filterByRating(filteredRating);
@@ -95,24 +95,11 @@ const store =  (function(){
   */
   function addBookmark (name, url, description, rating){
   
-
-    if (!item.validateName(name)){
-      alert('Must enter a valid name.');
-      throw new TypeError('Must enter a valid name.');
-
-    }
    
+    
 
-    if (!item.validateURL(url)){
-      alert('Must enter a valid url.');
-      throw new TypeError('Must enter a valid url.');
-    }
+    
    
-    if (!item.validateRating(rating)){
-      alert('Must enter a valid rating (1-5).');
-      throw new TypeError('Must enter a valid rating (1-5).');
-    }
-
     let newestBookmarkObj ={
       title: name,
       url,
@@ -121,7 +108,9 @@ const store =  (function(){
     };
     console.log(newestBookmarkObj);
     api.createBookmark(newestBookmarkObj, function() {
+      addSingleBookmark(newestBookmarkObj);
       bookmarkList.render();
+      
     });
 
   }
@@ -129,7 +118,10 @@ const store =  (function(){
   function addSingleBookmark(bookmark){
     bookmark.expanded = false;
     bookmarks.push(bookmark);
+    filterByRating(filteredRating);
   }
+
+  
 
   //getItemIdFromElement - finds the id of the closest bookmark to an item (event target)
   function getItemIdFromElement(item) {
@@ -155,19 +147,14 @@ const store =  (function(){
   
   //removeBookmark - finding the selected bookmark by id, and removes it from the bookmark list
   function removeBookmark(selectedId){
-    const list = [];
-    for (let i=0; i <bookmarks.length; i++){
-      if (bookmarks[i].id === selectedId){
-        api.deleteBookmark(bookmarks[i], function() {
-          bookmarks[i].remove();
+    bookmarks.forEach(function (bookmark, index) {
+      if (bookmark.id === selectedId){
+        api.deleteBookmark(bookmark, function() {
+          bookmarks.splice(index, 1);
           bookmarkList.render();
         });
       }
-    }
-    bookmarks = list;
-    console.log(bookmarks);
-
-    bookmarkList.render();
+    });
   
   }
 
@@ -176,8 +163,7 @@ const store =  (function(){
   than or equal to that number
   */
   function filterByRating(rating){
-    filteredRating = rating;
-    filteredList = bookmarks.filter(item => item.rating >= filteredRating);
+    filteredList = bookmarks.filter(item => item.rating >= rating);
     bookmarkList.render(filteredList);
   }
 

@@ -27,16 +27,17 @@
                                 <label for="new-bookmark-entry">Create a new bookmark: <br><br></label>
                     
                                 <label for="new-bookmark-entry-name">Name:</label>
-                                <input type="text" name="new-bookmark-entry-name" class="js-new-bookmark-name" placeholder="Name">
-                    
+                                <input type="text" name="new-bookmark-entry-name" required class="js-new-bookmark-name new-bookmark-name" placeholder="Name">
+                             
                                 <label for="new-bookmark-entry-url"><br>URL:</label>
-                                <input type="text" name="new-bookmark-entry-url" class="js-new-bookmark-url" placeholder="URL">
-                    
+                                <input type="url" name="new-bookmark-entry-url" required class="js-new-bookmark-url new-bookmark-url" placeholder="URL">
+                                <span id ="url-alert">A URL must start with http:// or https:// followed by at least one character!</span>
+
                                 <label for="new-bookmark-entry-description"><br>Description:</label>
-                                <input type="text" name="new-bookmark-entry-description" class="js-new-bookmark-description" placeholder="Description goes here...">
+                                <input type="text" name="new-bookmark-entry-description" class="js-new-bookmark-description new-bookmark-description" placeholder="Description goes here...">
                     
                                 <label for ="star-rating"><br> Rating: </label>
-                                <input type="radio" id="star-rating" name="rating" value="1" />
+                                <input type="radio" id="star-rating" name="rating" value="1" required />
                                 <label for="1-star">★☆☆☆☆</label>
                     
                                 <input type="radio" id="star-rating" name="rating" value="2"  />
@@ -66,7 +67,7 @@
     <option value="1">1 star</option>
     <option value="0" selected>--Minimun Rating--</option>    
 </select>
-<button id="filter-rating-button" role="filter-bookmarks">Filter</button>
+<button class="filter-rating-button" role="filter-bookmarks">Filter</button>
 </div>
 </div>
     </div>
