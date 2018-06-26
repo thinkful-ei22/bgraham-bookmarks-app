@@ -95,11 +95,6 @@ const store =  (function(){
   */
   function addBookmark (name, url, description, rating){
   
-   
-    
-
-    
-   
     let newestBookmarkObj ={
       title: name,
       url,
