@@ -14,7 +14,7 @@ const bookmarkList = (function () {
     <div class="expandedContainer">
     <p class="bookmark-item-description"><i>- ${bookmark.desc}</i></p>
   <div class="expanded-footer">
-    <a href="https://${bookmark.url}" id="bookmark-url">Visit Site</a>
+    <a href="${bookmark.url}" id="bookmark-url">Visit Site</a>
     <button class="remove-bookmark">
     <span class="button-label" role="remove-bookmark">Remove Bookmark</span>
     </button>
